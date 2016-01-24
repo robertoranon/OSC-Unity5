@@ -8,7 +8,7 @@ using UnityEngine;
 
 
   // UdpPacket provides packetIO over UDP
-  public class UDPPacketIO : MonoBehaviour
+  public class UDPPacketIO 
   {
     private UdpClient Sender;
     private UdpClient Receiver;
