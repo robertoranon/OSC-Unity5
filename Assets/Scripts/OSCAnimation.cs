@@ -11,8 +11,8 @@ public class OSCAnimation : MonoBehaviour {
 
 
 	public string messageAddress; // OSC message address
-	public string componentName; // type of the component to animate (must be attached to this object)
-	public string propertyName; // name of the property of the component to be animated 
+	protected string componentName; // type of the component to animate (must be attached to this object)
+	protected string propertyName; // name of the property of the component to be animated 
 
 	protected PropertyInfo property; // we use C# reflection to get the actual property from its name
 	protected Component comp;

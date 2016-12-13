@@ -11,7 +11,7 @@ using System;
 
 public class OSCConnection : MonoBehaviour {
 
-	[HideInInspector] public string RemoteIP = "127.0.0.1"; //127.0.0.1 signifies a local host 
+	public string RemoteIP = "127.0.0.1"; //127.0.0.1 signifies a local host 
 	[HideInInspector] public int SendToPort = 9000; //the port you will be sending from
 	public int ListenerPort = 8050; //the port you will be listening on
 	public GameObject[] receiverGameObjects; // game objects that will receive OSC events

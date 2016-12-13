@@ -9,6 +9,16 @@ using System.Reflection;
 
 public class OSCAnimateSingleValue : OSCAnimation {
 
+	public string Component;
+	public string Property;
+
+	void Start () {
+
+		componentName = Component;
+		propertyName = Property;
+
+	}
+
 	// Update is called once per frame
 	void Update () {
 
