@@ -1,6 +1,6 @@
 # OSC-Unity5
 
-Scripts to control unity components based on osc input. Each script reads the first value sent in the OSC message, and use it to set a single property.
+Scripts to control unity components based on osc input. Each script reads the first value sent in the OSC message, and use it to set a single property. They are quite limited, but do not require any coding to be used.
 
 - OSCAnimateLight.cs: attach this to a game object that contains a light. Allows to control light intensity, range, color
 - OSCAnimateStandardMaterial.cs: attach this to a game object with a Renderer, and a standard material as first material. The script allows to control the material Albedo color (one channel at a time), Emission Color (one channel at a time), Emission multiplier, Metallic, Smoothness, main texture tiling and offset (one component at a time). 
@@ -20,3 +20,7 @@ Current Limitations:
 - the OSCAnimateStandardMaterial only works with the Unity Standard Material (might work limitedly with others)
 - the OSCAnimateSingleValue works only if the value to animate is a property (as opposed to a field). Since it is not easy to know if something is a property or a field, the script might work in some cases, while not in others.
 - we just use the first value in the OSC message, the others are ignored. 
+
+# Credits
+
+Based on osc/networking code found in [this thread][https://forum.unity3d.com/threads/midi-or-osc-for-unity-indie-users.16882/] by Dave Pentecost.
