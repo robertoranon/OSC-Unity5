@@ -23,4 +23,4 @@ Current Limitations:
 
 # Credits
 
-Based on osc/networking code found in [this thread][https://forum.unity3d.com/threads/midi-or-osc-for-unity-indie-users.16882/] by Dave Pentecost.
+Based on osc/networking code found in [this thread](https://forum.unity3d.com/threads/midi-or-osc-for-unity-indie-users.16882/) by Dave Pentecost.
