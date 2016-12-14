@@ -24,6 +24,12 @@ public class OSCAnimation : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		Init ();
+
+	}
+
+	protected void Init() {
+
 		comp = this.GetComponent (componentName);
 		if (!propertyName.Contains ("[")) {  // i.e. the property is a single value, not an array
 			property = comp.GetType ().GetProperty (propertyName);

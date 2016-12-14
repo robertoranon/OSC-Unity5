@@ -16,6 +16,7 @@ public class OSCAnimateSingleValue : OSCAnimation {
 
 		componentName = Component;
 		propertyName = Property;
+		Init ();
 
 	}
 
@@ -29,16 +30,16 @@ public class OSCAnimateSingleValue : OSCAnimation {
 				if (!isMultiValue) { // we directly set the value if the property is single-value
 					property.SetValue (comp, localMsg.Values[0], null);
 				} else {
-					object val = property.GetValue(comp, null);
+					object val = property.GetValue(comp,null);
 					if ( val.GetType() == typeof(Color) ) {
 						Color v = (Color)val;
 						v[index] = (float)localMsg.Values[0];
-						property.SetValue (comp, v, null);
+						property.SetValue (comp, v,null);
 					}
 					if ( val.GetType() == typeof(Vector3) ) {
 						Vector3 v = (Vector3)val;
 						v[index] = (float)localMsg.Values[0];
-						property.SetValue (comp, v, null);
+						property.SetValue (comp, v,null);
 					}
 				}
 			}
