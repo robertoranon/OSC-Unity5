@@ -18,7 +18,6 @@ Current Limitations:
 
 - scripts that act on materials (OSCAnimateStandardMaterial and OSCChangeMaterial) only operate on the first material of the game object.
 - the OSCAnimateStandardMaterial only works with the Unity Standard Material (might work limitedly with others)
-- the OSCAnimateSingleValue works only if the value to animate is a property (as opposed to a field). Since it is not easy to know if something is a property or a field, the script might work in some cases, while not in others.
 - we just use the first value in the OSC message, the others are ignored. 
 
 # Credits

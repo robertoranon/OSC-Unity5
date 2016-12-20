@@ -28,8 +28,25 @@ public class OSCAnimateSingleValue : OSCAnimation {
 			try
 			{
 				if (!isMultiValue) { // we directly set the value if the property is single-value
-					property.SetValue (comp, localMsg.Values[0], null);
+					if (property == null) {
+						field.SetValue( comp, localMsg.Values[0]);
+					} else {
+						property.SetValue (comp, localMsg.Values[0], null);
+					}
 				} else {
+					if (property == null) {
+						object val = field.GetValue(comp);
+						if ( val.GetType() == typeof(Color) ) {
+							Color v = (Color)val;
+							v[index] = (float)localMsg.Values[0];
+							field.SetValue (comp, v);
+						}
+						if ( val.GetType() == typeof(Vector3) ) {
+							Vector3 v = (Vector3)val;
+							v[index] = (float)localMsg.Values[0];
+							field.SetValue (comp, v);
+						}
+					} else {
 					object val = property.GetValue(comp,null);
 					if ( val.GetType() == typeof(Color) ) {
 						Color v = (Color)val;
@@ -40,6 +57,7 @@ public class OSCAnimateSingleValue : OSCAnimation {
 						Vector3 v = (Vector3)val;
 						v[index] = (float)localMsg.Values[0];
 						property.SetValue (comp, v,null);
+					}
 					}
 				}
 			}

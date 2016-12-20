@@ -15,6 +15,7 @@ public class OSCAnimation : MonoBehaviour {
 	protected string propertyName; // name of the property of the component to be animated 
 
 	protected PropertyInfo property; // we use C# reflection to get the actual property from its name
+	protected FieldInfo field; // we use C# reflection to get the actual property from its name
 	protected Component comp;
 	protected OscMessage localMsg;
 	protected bool newMessage = false;
@@ -33,13 +34,17 @@ public class OSCAnimation : MonoBehaviour {
 		comp = this.GetComponent (componentName);
 		if (!propertyName.Contains ("[")) {  // i.e. the property is a single value, not an array
 			property = comp.GetType ().GetProperty (propertyName);
+			if (property == null) {
+				field = comp.GetType ().GetField (propertyName);
+			}
 		} else { // we mean to change a single value inside an array-type value
 			property = comp.GetType ().GetProperty (propertyName.Substring (0, propertyName.IndexOf ('[')));
+			if (property == null) {
+				field = comp.GetType ().GetField (propertyName.Substring (0, propertyName.IndexOf ('[')));
+			}
 			index = System.Int32.Parse (propertyName.Substring (propertyName.IndexOf ('[')+1, 1));
 			isMultiValue = true;
-
 		}
-
 	}
 	
 
