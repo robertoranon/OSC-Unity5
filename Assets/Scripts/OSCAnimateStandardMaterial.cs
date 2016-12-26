@@ -20,7 +20,7 @@ public class OSCAnimateStandardMaterial : OSCAnimation {
 		Emission_Color_R,
 		Emission_Color_G,
 		Emission_Color_B,
-		Emission_Multiplier,
+		Emission_Brightness,
 		Tiling_X,
 		Tiling_Y,
 		Offset_X,
@@ -86,10 +86,13 @@ public class OSCAnimateStandardMaterial : OSCAnimation {
 					mat.SetColor("_EmissionColor", prevColor );
 					break;
 
-				case STANDARD_MATERIAL_FIELDS.Emission_Multiplier:
+				case STANDARD_MATERIAL_FIELDS.Emission_Brightness:
 					prevColor = mat.GetColor("_EmissionColor");
-					prevColor = float.Parse(localMsg.Values[0].ToString()) * prevColor;
-					mat.SetColor("_EmissionColor", prevColor );
+					float h,s,v;
+					Color.RGBToHSV( prevColor, out h, out s, out v);
+					v = float.Parse(localMsg.Values[0].ToString());
+					Color newValue = Color.HSVToRGB( h, s, v );
+					mat.SetColor("_EmissionColor", newValue );
 					break;
 
 				case STANDARD_MATERIAL_FIELDS.Metallic:
