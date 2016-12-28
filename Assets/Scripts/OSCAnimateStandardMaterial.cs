@@ -47,6 +47,7 @@ public class OSCAnimateStandardMaterial : OSCAnimation {
 
 				Color prevColor;
 				Vector2 oldValue;
+				mat = this.GetComponent<Renderer> ().material;
 
 				switch (fieldToAnimate) {
 
