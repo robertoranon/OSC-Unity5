@@ -2,6 +2,10 @@
 
 Scripts to control unity components based on osc input. Each script reads the first value sent in the OSC message, and use it to set a single property. They are quite limited, but do not require any coding to be used.
 
+The following video, made by [Fede Deltaprocess](https://www.facebook.com/search/top/?q=fede%20deltaprocess%20processo), shows how to use them:
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/1Jo4PvfU8Tw/0.jpg)](https://www.youtube.com/watch?v=1Jo4PvfU8Tw&feature=youtu.be)
+
 - OSCAnimateLight.cs: attach this to a game object that contains a light. Allows to control light intensity, range, color
 - OSCAnimateStandardMaterial.cs: attach this to a game object with a Renderer, and a standard material as first material. The script allows to control the material Albedo color (one channel at a time), Emission Color (one channel at a time), Emission multiplier, Metallic, Smoothness, main texture tiling and offset (one component at a time). 
 - OSCChangeMaterial.cs: attach this to a game object with a Renderer. Insert a list of Materials in the script. Then, OSC events control which material is applied: 0 = first material, 1 = second material, 2 = third material, and so on.
