@@ -56,10 +56,10 @@ public class OSCTestSender : MonoBehaviour
     void Start()
     {
 
-        UDPPacketIO udp = GetComponent<UDPPacketIO>();
+        UDPPacketIO udp = new UDPPacketIO();
         udp.init(remoteIp, sendToPort, listenerPort);
 
-	    oscHandler = GetComponent<Osc>();
+	    oscHandler = new Osc();
         oscHandler.init(udp);
 
         oscHandler.SetAddressHandler("/hand1", Example);
