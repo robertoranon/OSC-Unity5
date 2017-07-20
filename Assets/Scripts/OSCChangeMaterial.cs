@@ -5,17 +5,21 @@ using UnityEngine;
 
 // script to animate a standard material through osc. we assume the message contains a single value, and
 // we also assume that the material to be animated is the first one in the renderer 
-[RequireComponent (typeof (Renderer))]
+//[RequireComponent (typeof (Renderer))]
 public class OSCChangeMaterial : OSCAnimation {
 
 	public Material[] materials;
 
+    public bool alsoModifyDescendants;
+
+    Component[] renderers;
+    bool prevAlsoModifyDescendants;
 
 	// Use this for initialization
 	void Start () {
 
-		comp = this.GetComponent<Renderer>();
-
+        Init();
+        prevAlsoModifyDescendants = alsoModifyDescendants;
 	}
 
 	// Update is called once per frame
@@ -23,14 +27,29 @@ public class OSCChangeMaterial : OSCAnimation {
 
 		if (newMessage) {
 
+            if ( prevAlsoModifyDescendants != alsoModifyDescendants) {
+
+                prevAlsoModifyDescendants = alsoModifyDescendants;
+                Init();
+            }
+
+
+            Debug.Log("received:" + localMsg.Address);
+
 			try
 			{
 
 				int newMaterialIndex = Mathf.RoundToInt( float.Parse(localMsg.Values[0].ToString()));
-				if ( materials.Length > newMaterialIndex && materials[newMaterialIndex]!=null ) {
+                Debug.Log(newMaterialIndex);
+                if (materials.Length > newMaterialIndex && materials[newMaterialIndex] != null)
+                {
 
-					Renderer r = (Renderer) comp;
-					r.material = materials[newMaterialIndex];
+                    foreach (Component comp in renderers)
+                    {
+                        Renderer r = (Renderer)comp;
+                        r.material = materials[newMaterialIndex];
+                    }
+                
 
 				}
 
@@ -45,4 +64,20 @@ public class OSCChangeMaterial : OSCAnimation {
 		}
 
 	}
+
+    void Init() {
+
+		if (alsoModifyDescendants)
+		{
+			renderers = GetComponentsInChildren<Renderer>();
+		}
+		else
+		{
+			renderers = GetComponents<Renderer>();
+
+		}
+
+    }
+
+
 }
