@@ -20,11 +20,11 @@ public class OSCAnimateStandardMaterialInChildren : OSCAnimation {
 	// Use this for initialization
 	void Start () {
 
-        Init();
+        InitComponent();
 		
 	}
 
-	void Init()
+	void InitComponent()
 	{
         Component[] renderers = GetComponentsInChildren<OSCAnimateStandardMaterial>();
         mats.Clear();
