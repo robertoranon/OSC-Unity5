@@ -45,90 +45,7 @@ public class OSCAnimateStandardMaterial : OSCAnimation {
 			try
 			{
 
-				Color prevColor;
-				Vector2 oldValue;
-				mat = this.GetComponent<Renderer> ().material;
-
-				switch (fieldToAnimate) {
-
-				case STANDARD_MATERIAL_FIELDS.Albedo_Color_R:
-					prevColor = mat.GetColor("_Color");
-					prevColor.r = float.Parse(localMsg.Values[0].ToString());
-					mat.SetColor("_Color", prevColor );
-					break;
-
-				case STANDARD_MATERIAL_FIELDS.Albedo_Color_G:
-					prevColor = mat.GetColor("_Color");
-					prevColor.g = float.Parse(localMsg.Values[0].ToString());
-					mat.SetColor("_Color", prevColor );
-					break;
-
-				case STANDARD_MATERIAL_FIELDS.Albedo_Color_B:
-					prevColor = mat.GetColor("_Color");
-					prevColor.b = float.Parse(localMsg.Values[0].ToString());
-					mat.SetColor("_Color", prevColor );
-					break;
-
-				case STANDARD_MATERIAL_FIELDS.Emission_Color_R:
-					prevColor = mat.GetColor("_EmissionColor");
-					prevColor.r = float.Parse(localMsg.Values[0].ToString());
-					mat.SetColor("_EmissionColor", prevColor );
-					break;
-
-				case STANDARD_MATERIAL_FIELDS.Emission_Color_G:
-					prevColor = mat.GetColor("_EmissionColor");
-					prevColor.g = float.Parse(localMsg.Values[0].ToString());
-					mat.SetColor("_EmissionColor", prevColor );
-					break;
-
-				case STANDARD_MATERIAL_FIELDS.Emission_Color_B:
-					prevColor = mat.GetColor("_EmissionColor");
-					prevColor.b = float.Parse(localMsg.Values[0].ToString());
-					mat.SetColor("_EmissionColor", prevColor );
-					break;
-
-				case STANDARD_MATERIAL_FIELDS.Emission_Brightness:
-					prevColor = mat.GetColor("_EmissionColor");
-					float h,s,v;
-					RGBToHSV2( prevColor, out h, out s, out v);
-					v = float.Parse(localMsg.Values[0].ToString());
-					Color newValue = HSVToRGB2( h, s, v );
-					mat.SetColor("_EmissionColor", newValue );
-					break;
-
-				case STANDARD_MATERIAL_FIELDS.Metallic:
-					mat.SetFloat("_Metallic", float.Parse(localMsg.Values[0].ToString()));
-					break;
-
-				case STANDARD_MATERIAL_FIELDS.Smoothness:
-					mat.SetFloat("_Glossiness", float.Parse(localMsg.Values[0].ToString()));
-					break;
-
-				case STANDARD_MATERIAL_FIELDS.Offset_X:
-					oldValue = mat.mainTextureOffset;
-					oldValue.x = float.Parse(localMsg.Values[0].ToString());
-					mat.mainTextureOffset = oldValue;
-					break;
-
-				case STANDARD_MATERIAL_FIELDS.Offset_Y:
-					oldValue = mat.mainTextureOffset;
-					oldValue.y = float.Parse(localMsg.Values[0].ToString());
-					mat.mainTextureOffset = oldValue;
-					break;
-
-				case STANDARD_MATERIAL_FIELDS.Tiling_X:
-					oldValue = mat.mainTextureScale;
-					oldValue.x = float.Parse(localMsg.Values[0].ToString());
-					mat.mainTextureScale = oldValue;
-					break;
-
-				case STANDARD_MATERIAL_FIELDS.Tiling_Y:
-					oldValue = mat.mainTextureScale;
-					oldValue.y = float.Parse(localMsg.Values[0].ToString());
-					mat.mainTextureScale = oldValue;
-					break;
-
-				}
+                animateMaterial( localMsg);
 					
 			}
 			catch (System.Exception e)
@@ -141,6 +58,98 @@ public class OSCAnimateStandardMaterial : OSCAnimation {
 		}
 		
 	}
+
+
+    public void animateMaterial(OscMessage localMsg ) {
+
+		Color prevColor;
+		Vector2 oldValue;
+		mat = this.GetComponent<Renderer>().material;
+
+		switch (fieldToAnimate)
+		{
+
+			case STANDARD_MATERIAL_FIELDS.Albedo_Color_R:
+				prevColor = mat.GetColor("_Color");
+				prevColor.r = float.Parse(localMsg.Values[0].ToString());
+				mat.SetColor("_Color", prevColor);
+				break;
+
+			case STANDARD_MATERIAL_FIELDS.Albedo_Color_G:
+				prevColor = mat.GetColor("_Color");
+				prevColor.g = float.Parse(localMsg.Values[0].ToString());
+				mat.SetColor("_Color", prevColor);
+				break;
+
+			case STANDARD_MATERIAL_FIELDS.Albedo_Color_B:
+				prevColor = mat.GetColor("_Color");
+				prevColor.b = float.Parse(localMsg.Values[0].ToString());
+				mat.SetColor("_Color", prevColor);
+				break;
+
+			case STANDARD_MATERIAL_FIELDS.Emission_Color_R:
+				prevColor = mat.GetColor("_EmissionColor");
+				prevColor.r = float.Parse(localMsg.Values[0].ToString());
+				mat.SetColor("_EmissionColor", prevColor);
+				break;
+
+			case STANDARD_MATERIAL_FIELDS.Emission_Color_G:
+				prevColor = mat.GetColor("_EmissionColor");
+				prevColor.g = float.Parse(localMsg.Values[0].ToString());
+				mat.SetColor("_EmissionColor", prevColor);
+				break;
+
+			case STANDARD_MATERIAL_FIELDS.Emission_Color_B:
+				prevColor = mat.GetColor("_EmissionColor");
+				prevColor.b = float.Parse(localMsg.Values[0].ToString());
+				mat.SetColor("_EmissionColor", prevColor);
+				break;
+
+			case STANDARD_MATERIAL_FIELDS.Emission_Brightness:
+				prevColor = mat.GetColor("_EmissionColor");
+				float h, s, v;
+				RGBToHSV2(prevColor, out h, out s, out v);
+				v = float.Parse(localMsg.Values[0].ToString());
+				Color newValue = HSVToRGB2(h, s, v);
+				mat.SetColor("_EmissionColor", newValue);
+				break;
+
+			case STANDARD_MATERIAL_FIELDS.Metallic:
+				mat.SetFloat("_Metallic", float.Parse(localMsg.Values[0].ToString()));
+				break;
+
+			case STANDARD_MATERIAL_FIELDS.Smoothness:
+				mat.SetFloat("_Glossiness", float.Parse(localMsg.Values[0].ToString()));
+				break;
+
+			case STANDARD_MATERIAL_FIELDS.Offset_X:
+				oldValue = mat.mainTextureOffset;
+				oldValue.x = float.Parse(localMsg.Values[0].ToString());
+				mat.mainTextureOffset = oldValue;
+				break;
+
+			case STANDARD_MATERIAL_FIELDS.Offset_Y:
+				oldValue = mat.mainTextureOffset;
+				oldValue.y = float.Parse(localMsg.Values[0].ToString());
+				mat.mainTextureOffset = oldValue;
+				break;
+
+			case STANDARD_MATERIAL_FIELDS.Tiling_X:
+				oldValue = mat.mainTextureScale;
+				oldValue.x = float.Parse(localMsg.Values[0].ToString());
+				mat.mainTextureScale = oldValue;
+				break;
+
+			case STANDARD_MATERIAL_FIELDS.Tiling_Y:
+				oldValue = mat.mainTextureScale;
+				oldValue.y = float.Parse(localMsg.Values[0].ToString());
+				mat.mainTextureScale = oldValue;
+				break;
+
+		}
+
+    }
+
 
 	public static Color HSVToRGB2(float H, float S, float V)
 	{
