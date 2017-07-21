@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+
+
 // script to animate a standard material through osc. we assume the message contains a single value, and
 // we also assume that the material to be animated is the first one in the renderer 
 
 public class OSCAnimateStandardMaterialInChildren : OSCAnimation {
 
     private List<OSCAnimateStandardMaterial> mats = new List<OSCAnimateStandardMaterial>();
+
+	
+
+	public STANDARD_MATERIAL_FIELDS fieldToAnimate;
 
 
 	// Use this for initialization
@@ -24,9 +30,12 @@ public class OSCAnimateStandardMaterialInChildren : OSCAnimation {
         mats.Clear();
         foreach (Component comp in renderers)
         {
-
+            
             OSCAnimateStandardMaterial r = (OSCAnimateStandardMaterial)comp;
-            mats.Add(r);
+            if (r.fieldToAnimate == this.fieldToAnimate)
+            {
+                mats.Add(r);
+            }
         }
 	}
 	

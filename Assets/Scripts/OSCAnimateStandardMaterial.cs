@@ -2,6 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum STANDARD_MATERIAL_FIELDS
+{
+	Albedo_Color_R,
+	Albedo_Color_G,
+	Albedo_Color_B,
+	Metallic,
+	Smoothness,
+	Emission_Color_R,
+	Emission_Color_G,
+	Emission_Color_B,
+	Emission_Brightness,
+	Tiling_X,
+	Tiling_Y,
+	Offset_X,
+	Offset_Y
+}
+
 
 // script to animate a standard material through osc. we assume the message contains a single value, and
 // we also assume that the material to be animated is the first one in the renderer 
@@ -10,22 +27,7 @@ public class OSCAnimateStandardMaterial : OSCAnimation {
 
 	private Material mat;
 
-	public enum STANDARD_MATERIAL_FIELDS
-	{
-		Albedo_Color_R,
-		Albedo_Color_G,
-		Albedo_Color_B,
-		Metallic,
-		Smoothness,
-		Emission_Color_R,
-		Emission_Color_G,
-		Emission_Color_B,
-		Emission_Brightness,
-		Tiling_X,
-		Tiling_Y,
-		Offset_X,
-		Offset_Y
-	}
+	
 
 	public STANDARD_MATERIAL_FIELDS fieldToAnimate;
 
