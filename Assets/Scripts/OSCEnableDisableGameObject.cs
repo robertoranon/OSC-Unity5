@@ -21,7 +21,7 @@ public class OSCEnableDisableGameObject : OSCAnimation {
 			try
 			{
 
-				int value = int.Parse(localMsg.Values[0].ToString());
+				float value = float.Parse(localMsg.Values[0].ToString());
 				
 				if (value > 0) {
 
